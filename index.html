@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile card</title>
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="backround.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -46,23 +47,41 @@
         <div id="stars3"></div>
     </div>
 
-    <div class="card">
-        <div class="mac-header">
-            <span class="red"></span>
-            <span class="yellow"></span>
-            <span class="green"></span>
-        </div>
-        <span class="card-title">Mac-Style Code Preview</span>
-        <p class="card-description">
-            A glimpse of your code in a clean and Mac-like window. Click to explore!
-        </p>
-        <span class="card-tag">TAG JS</span> <span class="card-tag">TAG JS</span>
-        <div class="code-editor">
-            <pre><code>&lt;h1&gt; Hello World &lt;/h1&gt;</code></pre>
+    <div class="card-wrap">
+        <div class="card">
+            <div class="mac-header">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <span class="card-title">Mac-Style Code Preview</span>
+            <p class="card-description">
+                A glimpse of your code in a clean and Mac-like window. Click to explore!
+            </p>
+            <span class="card-tag">Software Developer</span> <span class="card-tag">TAG JS</span>
+            <div class="code-editor">
+                <pre><code>&lt;h1&gt; Hello Im a Software Developer, Im very passionate in building software, and I really like technology &lt;/h1&gt;</code></pre>
+            </div>
         </div>
     </div>
 
-
+    <script>
+        (() => {
+            const viewer = document.querySelector('spline-viewer');
+            if (!viewer) return;
+            let fired = false;
+            const go = () => {
+                if (fired) return;
+                fired = true;
+                clearInterval(poll);
+                viewer.classList.add('intro-in');
+            };
+            const poll = setInterval(() => {
+                if (viewer._loaded) go();
+            }, 100);
+            setTimeout(go, 7000);
+        })();
+    </script>
 
 </body>
 

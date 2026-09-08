@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile card</title>
+    <link rel="stylesheet" href="backround.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <script type="module" src="spline-viewer.js"></script>
+    <spline-viewer url="https://prod.spline.design/PqnTfTzI3gqjOTPb/scene.splinecode"></spline-viewer>
+
+    <script>
+        (() => {
+            const clean = (el) => {
+                const sr = el.shadowRoot;
+                if (!sr) return;
+                sr.querySelectorAll('#logo, [href*="spline.design"]').forEach((n) => n.remove());
+            };
+            const watched = new WeakSet();
+            const scout = () => {
+                document.querySelectorAll('spline-viewer').forEach((el) => {
+                    const sr = el.shadowRoot;
+                    if (!sr || watched.has(sr)) return;
+                    watched.add(sr);
+                    new MutationObserver(() => clean(el)).observe(sr, { childList: true, subtree: true });
+                    clean(el);
+                });
+            };
+            new MutationObserver(scout).observe(document.documentElement, { childList: true, subtree: true });
+            scout();
+            if (window.customElements) {
+                customElements.whenDefined('spline-viewer').then(scout);
+            }
+            setInterval(scout, 500);
+        })();
+    </script>
+
+    <div class="container">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <div class="card">
+        <div class="mac-header">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+        </div>
+        <span class="card-title">Mac-Style Code Preview</span>
+        <p class="card-description">
+            A glimpse of your code in a clean and Mac-like window. Click to explore!
+        </p>
+        <span class="card-tag">TAG JS</span> <span class="card-tag">TAG JS</span>
+        <div class="code-editor">
+            <pre><code>&lt;h1&gt; Hello World &lt;/h1&gt;</code></pre>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

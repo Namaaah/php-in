@@ -33,34 +33,41 @@ spline-viewer.intro-in {
 }
 
 .card-wrap {
-    position: fixed;
-    right: 23vw;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
     z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+    gap: 24px;
+    padding: 0 23vw 0 12vw;
+    box-sizing: border-box;
     opacity: 0;
     animation: cardIn 0.8s cubic-bezier(.22, .61, .36, 1) 2.4s both;
+    pointer-events: none;
+}
+
+.card-wrap .card {
+    pointer-events: auto;
 }
 
 @keyframes cardIn {
     from {
         opacity: 0;
-        transform: translateY(-50%) translateX(40px);
+        transform: translateX(40px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(-50%) translateX(0);
+        transform: translateX(0);
     }
 }
 
 @media (max-width: 820px) {
     .card-wrap {
-        right: 4vw;
-        left: 4vw;
-        top: auto;
-        bottom: 3vh;
-        transform: none;
+        align-items: center;
+        padding: 0 4vw;
     }
 
     .card-wrap .card {

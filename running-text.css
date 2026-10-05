@@ -1,0 +1,43 @@
+.wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.running-text {
+    margin: 0;
+    font-size: clamp(1.4rem, 5vw, 3.2rem);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-align: center;
+    color: #dff6ff;
+    text-shadow:
+        0 0 6px rgba(0, 170, 255, 0.8),
+        0 0 20px rgba(0, 170, 255, 0.4);
+    animation: appear 1.2s ease-out both;
+}
+
+.cursor {
+    color: #35e0ff;
+    text-shadow:
+        0 0 4px #35e0ff,
+        0 0 14px rgba(53, 224, 255, 0.9);
+    animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
